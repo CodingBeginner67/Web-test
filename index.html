@@ -6,8 +6,8 @@
 <style>
     body {background-color: #242424;}
 	h1 {color: #E1E1E1 ; font-size:250%; font-family: Verdana ;}    
-	h2 {color: #E1E1E1 ; font-size:100%; font-family: Verdana ;}
-	p {color: #F5F5F5 ; font-size:100%; font-family: Verdana ;}
+	h2 {color: #cfcbcb ; font-size:120%; font-family: Verdana ;}
+	p {color: #dfdddd ; font-size:110%; font-family: Verdana ;}
 
 </style>
 
@@ -24,9 +24,9 @@
     </nav>
 
 
-    <div style=" padding: 20px; text-align: center; margin-bottom: 500px;">
+    <div style=" padding: 20px; text-align: center; margin-bottom: 30px;">
 
-    <h1><b>Chúc Mừng Sinh Nhật Mẹ!</b></h1> <br>
+    <h1 style="border: 2px solid #6c6767; padding: 10px; background-color: rgb(29, 88, 190);"><b>Chúc Mừng Sinh Nhật Mẹ !</b></h1> <br>
 
     <div style="background-color: #b6bedd; padding: 30px; border: 2px solid #484040;">
         <img src="Me 1.jpg" alt="Happy Birthday" style="width: 350px; height: 300px; margin-right: 20px; border: 3px solid #e6e8de;">
@@ -35,8 +35,89 @@
 
     </div>
 
+
+    <button type="button" onclick="triggerConfetti()" style=" background-color: #9ee08c; margin-bottom: 50px; margin-left: 45%; width: 120px; height: 50px; font-size:100%; font-family: Verdana;"><b>TUNG HOA</b></button>
+
+
+    <div style = "margin-bottom:50px; padding: 5px; ">
+
+        <h2 style = "text-align: center;">Письмо к матери <br> Thư gửi mẹ (Trích)</h2> 
+        <P style = "margin-left:36%;">И молиться не учи меня. Не надо! <br> К старому возврата больше нет. <br>Ты одна мне помощь и отрада, <br>Ты одна мне несказанный свет. <br><br>
+        Так забудь же про свою тревогу, <br>Не грусти так шибко обо мне. <br>Не ходи так часто на дорогу <br>В старомодном ветхом шушуне. </P>  <br>
+
+        <h2 style = "text-align: center;">Bản dịch tiếng Việt <br> (Bằng Việt dịch)</h2> 
+        <p style = "margin-left:36%;"> Cũng chớ khuyên con nguyện cầu nữa, mẹ! <br>Ích chi đâu, nẻo cũ khép lâu rồi <br>Chỉ mẹ biết niềm vui và cứu giúp <br>Chỉ mẹ là ánh chói lói không lời! <br> <br>
+        Thôi hãy quên đi nỗi lo mẹ nhé <br>Và cũng đừng đau xót mãi cho con... <br>Đừng mỗi buổi lại ra đường mãi thế <br>Choàng trên vai chiếc áo cũ bông sờn!</p> <br> <br>
+
+    </div>
+
+    <div style = "margin-bottom: 200px; margin-left: 20%">
+    <iframe src="https://www.youtube.com/embed/azfHdlKajng?si=nXmbBu-AEjGw4Fur" width="560" height="300" title="YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
     <footer style="background-color: #1e1c1c; text-align: left; margin-bottom: 0px; padding: 1px; position: fixed; bottom: 0 ; left: 0; width: 100%; height: 8%;">
     <p>&copy; 67</p>
     </footer>
+
+
+
+    <script>
+    function triggerConfetti() {
+  const canvas = document.createElement('canvas');
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100vw';
+  canvas.style.height = '100vh';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '9999';
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  const colors = ['#f43f5e', '#fbbf24', '#38bdf8', '#a855f7', '#34d399', '#f472b6'];
+
+  for (let i = 0; i < 120; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 3 + 2,
+      angle: Math.random() * 6.7,
+      spin: Math.random() * 0.2 - 0.1
+    });
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let active = false;
+
+    pieces.forEach(p => {
+      p.y += p.speed;
+      p.angle += p.spin;
+      if (p.y < canvas.height) active = true;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    });
+
+    if (active) {
+      requestAnimationFrame(render);
+    } else {
+      canvas.remove();
+    }
+  }
+
+  render();
+}
+</script>
 
 </body>
